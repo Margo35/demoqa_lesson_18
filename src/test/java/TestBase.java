@@ -8,6 +8,8 @@ public class TestBase {
     static void setup() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
+        Configuration.headless = true;
+        Configuration.browser = "chrome";
         RestAssured.baseURI = "https://demoqa.com";
 
     }

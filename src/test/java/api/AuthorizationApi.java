@@ -1,5 +1,6 @@
 package api;
 
+import config.AuthConfig;
 import data.AuthData;
 import io.restassured.http.ContentType;
 import models.CredentialsModel;
@@ -13,9 +14,9 @@ import static specs.Spec.requestSpec;
 
 public class AuthorizationApi {
 
-    public static LoginResponseModel login(CredentialsModel credentials, AuthData authData) {
-        credentials.setUserName(authData.getUserName());
-        credentials.setPassword(authData.getPassword());
+    public static LoginResponseModel login(CredentialsModel credentials, AuthConfig authConfig) {
+        credentials.setUserName(authConfig.userName());
+        credentials.setPassword(authConfig.password());
         return given(requestSpec)
                 .body(credentials)
                 .when()

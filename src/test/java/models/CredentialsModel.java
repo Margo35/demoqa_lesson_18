@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class CredentialsModel {
 
-String userName, password;
+private String userName, password;
 }

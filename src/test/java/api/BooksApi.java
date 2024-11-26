@@ -1,5 +1,6 @@
 package api;
 
+import helpers.NumberIsbn;
 import io.restassured.specification.ResponseSpecification;
 import models.BookCollectionRequestModel;
 import models.BookRequestModel;
@@ -42,26 +43,19 @@ public class BooksApi {
 
 
         open("/profile");
-        $(".ReactTable").shouldHave(text("Speaking JavaScript"));
+        $(".ReactTable").shouldHave(text(NumberIsbn.getIsbn(isbnList.get(0).getIsbn())));
 
     }
 
-    public static void deleteBook(LoginResponseModel loginResponse, BookRequestModel book,
-                                  IsbnModel isbn){
-
-        book.setUserId(loginResponse.getUserId());
-        book.setIsbn(isbn.getIsbn());
-
+    public static void deleteAllBooks(LoginResponseModel loginResponse) {
         given(requestSpec)
                 .header("Authorization", "Bearer " + loginResponse.getToken())
-                .body(book)
+                .queryParams("UserId", loginResponse.getUserId())
                 .when()
-                .delete("/BookStore/v1/Book")
+                .delete("/BookStore/v1/Books")
                 .then()
                 .spec(Spec.createResponseSpec(204));
-
-        open("/profile");
-        $(".ReactTable").shouldNotHave(text("Speaking JavaScript"));
     }
+
 
 }

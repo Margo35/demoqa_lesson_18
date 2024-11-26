@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class BookRequestModel {
-    String userId, isbn;
+    private String userId, isbn;
 }

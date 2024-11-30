@@ -1,19 +1,17 @@
 package api;
 
 import config.AuthConfig;
-import data.AuthData;
-import io.restassured.http.ContentType;
+import io.qameta.allure.Step;
 import models.CredentialsModel;
 import models.LoginResponseModel;
 import specs.Spec;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.requestSpecification;
-import static io.restassured.http.ContentType.JSON;
 import static specs.Spec.requestSpec;
 
 public class AuthorizationApi {
 
+    @Step("Отправляем POST запрос на логин")
     public static LoginResponseModel login(CredentialsModel credentials, AuthConfig authConfig) {
         credentials.setUserName(authConfig.userName());
         credentials.setPassword(authConfig.password());

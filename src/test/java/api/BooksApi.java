@@ -1,6 +1,7 @@
 package api;
 
 import helpers.NumberIsbn;
+import io.qameta.allure.Step;
 import io.restassured.specification.ResponseSpecification;
 import models.BookCollectionRequestModel;
 import models.BookRequestModel;
@@ -22,6 +23,7 @@ import static specs.Spec.requestSpec;
 
 public class BooksApi {
 
+    @Step("Отправляем POST запрос на добавление книги в корзину")
     public static void addBook(LoginResponseModel loginResponse, BookCollectionRequestModel bookCollection,
                                List<IsbnModel> isbnList) {
 
@@ -42,11 +44,9 @@ public class BooksApi {
         getWebDriver().manage().addCookie(new Cookie("token", loginResponse.getToken()));
 
 
-        open("/profile");
-        $(".ReactTable").shouldHave(text(NumberIsbn.getIsbn(isbnList.get(0).getIsbn())));
-
     }
 
+    @Step("Очищаем корзину")
     public static void deleteAllBooks(LoginResponseModel loginResponse) {
         given(requestSpec)
                 .header("Authorization", "Bearer " + loginResponse.getToken())

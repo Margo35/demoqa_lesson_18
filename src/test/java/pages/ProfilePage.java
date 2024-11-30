@@ -12,7 +12,7 @@ public class ProfilePage {
         open("/profile");
     }
 
-    @Step("Открытие страницы /profile")
+    @Step("Открываем страницы /profile")
     public static void openProfile(String isbn) {
         open("/profile");
     }

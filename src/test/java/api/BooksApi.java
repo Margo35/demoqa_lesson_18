@@ -24,7 +24,7 @@ import static specs.Spec.requestSpec;
 public class BooksApi {
 
     @Step("Отправляем POST запрос на добавление книги в корзину")
-    public static void addBook(LoginResponseModel loginResponse, BookCollectionRequestModel bookCollection,
+    public void addBook(LoginResponseModel loginResponse, BookCollectionRequestModel bookCollection,
                                List<IsbnModel> isbnList) {
 
         bookCollection.setUserId(loginResponse.getUserId());
@@ -47,7 +47,7 @@ public class BooksApi {
     }
 
     @Step("Очищаем корзину")
-    public static void deleteAllBooks(LoginResponseModel loginResponse) {
+    public void deleteAllBooks(LoginResponseModel loginResponse) {
         given(requestSpec)
                 .header("Authorization", "Bearer " + loginResponse.getToken())
                 .queryParams("UserId", loginResponse.getUserId())

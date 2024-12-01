@@ -12,7 +12,7 @@ import static specs.Spec.requestSpec;
 public class AuthorizationApi {
 
     @Step("Отправляем POST запрос на логин")
-    public static LoginResponseModel login(CredentialsModel credentials, AuthConfig authConfig) {
+    public LoginResponseModel login(CredentialsModel credentials, AuthConfig authConfig) {
         credentials.setUserName(authConfig.userName());
         credentials.setPassword(authConfig.password());
         return given(requestSpec)

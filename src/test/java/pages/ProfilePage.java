@@ -18,13 +18,13 @@ public class ProfilePage {
     }
 
     @Step("Проверка отображения добавленной книги в /profile")
-    public static void checkAddBook(String isbn) {
+    public void checkAddBook(String isbn) {
         $(".ReactTable").shouldHave(text(NumberIsbn.getIsbn(isbn)));
     }
 
 
     @Step("Удаляем книгу из корзины")
-    public static void deleteBook() {
+    public void deleteBook() {
         $$(".rt-tr-group").first().$("#delete-record-undefined").scrollTo().click();
         $("#closeSmallModal-ok").scrollTo().click();
 
@@ -32,7 +32,7 @@ public class ProfilePage {
     }
 
     @Step("Проверяем, что книга удалена")
-    public static void checkDeletedBook(String isbn) {
+    public void checkDeletedBook(String isbn) {
         $(".ReactTable").shouldNotHave(text(NumberIsbn.getIsbn(isbn)));
     }
 

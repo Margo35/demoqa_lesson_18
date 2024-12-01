@@ -19,7 +19,7 @@ public class DemoqaTests extends TestBase {
 
         CredentialsModel credentials = new CredentialsModel();
         AuthConfig authConfig = ConfigFactory.create(AuthConfig.class);
-        //AuthData authData = new AuthData();
+        ProfilePage profilePage = new ProfilePage();
         BookCollectionRequestModel bookCollection = new BookCollectionRequestModel();
         List<IsbnModel> isbnList = new ArrayList<>();
         IsbnModel isbn = new IsbnModel();
@@ -30,9 +30,9 @@ public class DemoqaTests extends TestBase {
         BooksApi.deleteAllBooks(loginResponse);
         BooksApi.addBook(loginResponse, bookCollection, isbnList);
         ProfilePage.openProfile(isbn.getIsbn());
-        ProfilePage.checkAddBook(isbn.getIsbn());
-        ProfilePage.deleteBook();
-        ProfilePage.checkDeletedBook(isbn.getIsbn());
+        profilePage.checkAddBook(isbn.getIsbn());
+        profilePage.deleteBook();
+        profilePage.checkDeletedBook(isbn.getIsbn());
 
 
     }
